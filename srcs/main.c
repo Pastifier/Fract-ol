@@ -14,5 +14,9 @@
 
 int	main(int c, char *v[])
 {
+	(void)c; (void)v;
+	ft_putendl_fd("Hello!", 1);
+	void* mlx_ptr = mlx_init();
+	(void)mlx_ptr;
 	return (0);
 }

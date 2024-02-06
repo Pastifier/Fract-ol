@@ -13,4 +13,14 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
+# include "libft.h"
+# include "mlx.h"
+# include <math.h>
+
+# ifdef __linux__
+# endif // !__linux__
+
+# ifdef __MACH__
+# endif // !__MACH__
+
 #endif // !FRACTOL_H
