@@ -6,7 +6,7 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:51:09 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/11 02:06:11 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/11 02:42:53 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	init_julia(char **v, t_program *program)
 			&program->img.endian);
 	program->mouse_pos = (t_complex){.a = ft_atoi(v[2]).value,
 		.b = ft_atoi(v[3]).value};
-	program->lock = true;
+	program->lock = false;
 	program->pixel = (t_point){0};
 }
 
@@ -70,7 +70,8 @@ int	parse_input(int c, char **v)
 
 int	dynamic_julia(int x, int y, t_program *fractol)
 {
-	if (JULIA == fractol->chosen_set && (x != fractol->pixel.x || y != fractol->pixel.y))
+	if (JULIA == fractol->chosen_set && !fractol->lock
+		&& (x != fractol->pixel.x || y != fractol->pixel.y))
 	{
 		fractol->mouse_pos.a = (x / (double)WIN_WIDTH) * 3.0 - 2.0;
 		fractol->mouse_pos.b = (y / (double)WIN_HEIGHT) * 2.0 - 1.0;
