@@ -1,6 +1,6 @@
 # Necessities
 CC := cc
-CFLAGS = -Wextra -Werror -Wall -g3 -fsanitize=address,undefined
+CFLAGS = -Wextra -Werror -Wall -g3 -O3
 
 # OS-specification
 OS := $(shell uname)
@@ -24,7 +24,7 @@ endif
 # PROJECT
 NAME := fractol
 
-SRC := main.c
+SRC := main.c coloring.c utils.c render.c
 SRC_DIR := srcs
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 

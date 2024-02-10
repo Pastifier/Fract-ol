@@ -3,68 +3,101 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebinjama <ebinjama@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:51:09 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/06 21:07:40 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/11 01:05:09 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int			parse_input(int c, char **v);
-static t_program	init_julia(int c, char **v);
+static int	parse_input(int c, char **v);
+static int	destroy_program(t_program *program);
+static void	mlx_set_hooks(t_program *program);
+static void	init_julia(char **v, t_program *program);
 
 int	main(int c, char *v[])
 {
-	static t_program	program;
-	int					chosen_set;
+	static t_program	screen;
 
-	chosen_set = parse_input(c, v);
-	if (JULIA == chosen_set)
-		program = init_julia(c, v);
-	else if (MANDELBROT == chosen_set)
-		// ft_mandelbrot();
-		return (ft_putendl_fd("You chose Mandelbrot", STDOUT_FILENO), 0);
+	screen.zoom = 200.0;
+	screen.chosen_set = parse_input(c, v);
+	screen.algo_toggle = 0xFF01BBEE;
+	if (JULIA == screen.chosen_set)
+		init_julia(v, &screen);
+	else if (MANDELBROT == screen.chosen_set)
+		;
 	else
-		return (ft_putendl_fd(RED"usage: fractol [set_name] [x1] [x2]"DFLT,
+		return (ft_putendl_fd(RED"usage:-\n"\
+				"JULIA: fractol <{julia/JULIA}> <x> <y>\n"\
+				"MANDELBROT: fractol {mandelbrot/MANDELBROT}"DFLT,
 				STDERR_FILENO), 2);
+	mlx_set_hooks(&screen);
 	return (0);
 }
 
-t_program	init_julia(int c, char **v)
+void	init_julia(char **v, t_program *program)
 {
-	t_program	self;
-
-	self.mlx = mlx_init();
-	if (!self.mlx)
-		(ft_putendl_fd(RED"fractol: skill issue."DFLT, STDERR_FILENO),
-			exit(2));
-	self.win = mlx_new_window(self.mlx, WIN_HEIGHT, WIN_WIDTH, "Julia Set");
-	// REMEMBER TO FREE!!
-	if (!self.win)
-		(ft_putendl_fd(RED"fractol: skill issue."DFLT, STDERR_FILENO),
-			exit(2));
-	if (c == 4)
-		self.range = (t_range){.left_bound = ft_atoi(v[2]),
-			ft_atoi(v[3])};
-	else
-		(ft_putendl_fd(RED"fractol: skill issue."DFLT, STDERR_FILENO),
-			exit(2));
-	if (self.range.left_bound.error || self.range.right_bound.error)
-		(ft_putendl_fd(RED"Please use correct inputs"DFLT, STDERR_FILENO),
-			exit(2));
-	return (self);
+	program->mlx = mlx_init();
+	if (!program->mlx)
+		(ft_putendl_fd(RED"Couldn't init mlx"DFLT, 2), (void)exit(2));
+	program->win = mlx_new_window(program->mlx, WIN_WIDTH, WIN_HEIGHT, "Julia");
+	if (!program->win)
+		(free(program->mlx), ft_putendl_fd(RED"Couldn't init mlx"DFLT, 2),
+			(void)exit(2));
+	program->img.img = mlx_new_image(program->mlx, WIN_WIDTH, WIN_HEIGHT);
+	program->img.addr = mlx_get_data_addr(program->img.img,
+			&program->img.bits_per_pixel, &program->img.line_length,
+			&program->img.endian);
+	program->mouse_pos = (t_complex){.a = ft_atoi(v[2]).value,
+		.b = ft_atoi(v[3]).value};
+	program->lock = true;
+	program->pixel = (t_point){0};
 }
 
 int	parse_input(int c, char **v)
 {
 	if (c < 2)
 		return (NONE);
-	if (!ft_strncmp("JULIA", v[1], 6) || !ft_strncmp("julia", v[1], 6))
+	if ((!ft_strncmp("JULIA", v[1], 6) && c == 4)
+		|| (!ft_strncmp("julia", v[1], 6) && c == 4))
 		return (JULIA);
-	else if (!ft_strncmp("MANDELBROT", v[1], 11)
-		|| !ft_strncmp("mandelbrot", v[1], 11))
+	else if ((!ft_strncmp("MANDELBROT", v[1], 11) && c == 2)
+		|| (!ft_strncmp("mandelbrot", v[1], 11) && c == 2))
 		return (MANDELBROT);
 	return (NONE);
+}
+
+int	dynamic_julia(int x, int y, t_program *fractol)
+{
+	if (JULIA == fractol->chosen_set && (x != fractol->pixel.x || y != fractol->pixel.y))
+	{
+		fractol->mouse_pos.a = (x / (double)WIN_WIDTH) * 3.0 - 2.0;
+		fractol->mouse_pos.b = (y / (double)WIN_HEIGHT) * 2.0 - 1.0;
+		// mlx_clear_window(fractol->mlx, fractol->win);
+		render(fractol);
+		mlx_put_image_to_window(fractol->mlx, fractol->win,
+			fractol->img.img, 0, 0);
+	}
+	return (0);
+}
+
+void	mlx_set_hooks(t_program *fractol)
+{
+	mlx_hook(fractol->win, ON_MOUSEMOVE,
+		1L << ON_MOUSEMOVE, dynamic_julia, fractol);
+	mlx_hook(fractol->win, ON_DESTROY, 0, destroy_program, fractol);
+	render(fractol);
+	mlx_loop(fractol->mlx);
+}
+
+int	destroy_program(t_program *fractol)
+{
+	mlx_destroy_image(fractol->mlx, fractol->img.img);
+	mlx_destroy_window(fractol->mlx, fractol->win);
+	free(fractol->mlx);
+	if (fractol->error)
+		exit(EXIT_FAILURE);
+	return (exit(EXIT_SUCCESS), 0);
 }
