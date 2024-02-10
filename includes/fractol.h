@@ -6,7 +6,7 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:42:35 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/11 01:09:45 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/11 02:11:03 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 /*--- CONST. DEFINES ---*/
 
 # ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 960
+#  define WIN_HEIGHT 300
 # endif // !WIN_HEIGHT
 
 # ifndef WIN_WIDTH
-#  define WIN_WIDTH 1080
+#  define WIN_WIDTH 300
 # endif // !WIN_WIDTH
 
 # ifndef MAX_ITER
@@ -43,7 +43,9 @@
 
 enum e_keysyms
 {
-	KEY_ESC = 0xF1BB
+	KEY_ESC = 65307,
+	KEY_D = 100,
+	KEY_A = 97
 };
 # endif // !__linux__
 
@@ -124,4 +126,9 @@ void	pixel_put(t_data *data, t_point coordinates, int color);
 /*--- RENDERING ---*/
 
 void	render(t_program *fractol);
+int		destroy_program(t_program *fractol);
+
+/*--- HOOKS ---*/
+
+int	handle_key_inputs(int keysym, t_program *fractol);
 #endif // !FRACTOL_H

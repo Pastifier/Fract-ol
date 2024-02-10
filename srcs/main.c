@@ -6,14 +6,13 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:51:09 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/11 01:05:09 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/11 02:06:11 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 static int	parse_input(int c, char **v);
-static int	destroy_program(t_program *program);
 static void	mlx_set_hooks(t_program *program);
 static void	init_julia(char **v, t_program *program);
 
@@ -21,7 +20,7 @@ int	main(int c, char *v[])
 {
 	static t_program	screen;
 
-	screen.zoom = 200.0;
+	screen.zoom = 100.0;
 	screen.chosen_set = parse_input(c, v);
 	screen.algo_toggle = 0xFF01BBEE;
 	if (JULIA == screen.chosen_set)
@@ -87,17 +86,8 @@ void	mlx_set_hooks(t_program *fractol)
 {
 	mlx_hook(fractol->win, ON_MOUSEMOVE,
 		1L << ON_MOUSEMOVE, dynamic_julia, fractol);
+	mlx_hook(fractol->win, ON_KEYDOWN, 1L, handle_key_inputs, fractol);
 	mlx_hook(fractol->win, ON_DESTROY, 0, destroy_program, fractol);
 	render(fractol);
 	mlx_loop(fractol->mlx);
-}
-
-int	destroy_program(t_program *fractol)
-{
-	mlx_destroy_image(fractol->mlx, fractol->img.img);
-	mlx_destroy_window(fractol->mlx, fractol->win);
-	free(fractol->mlx);
-	if (fractol->error)
-		exit(EXIT_FAILURE);
-	return (exit(EXIT_SUCCESS), 0);
 }

@@ -24,7 +24,7 @@ endif
 # PROJECT
 NAME := fractol
 
-SRC := main.c coloring.c utils.c render.c
+SRC := main.c coloring.c utils.c render.c hooks.c
 SRC_DIR := srcs
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
