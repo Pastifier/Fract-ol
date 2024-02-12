@@ -6,7 +6,7 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:00:33 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/11 02:01:10 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:16:33 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int	destroy_program(t_program *fractol)
 	mlx_destroy_window(fractol->mlx, fractol->win);
 	free(fractol->mlx);
 	if (fractol->error)
-		exit(EXIT_FAILURE);
+		exit(fractol->error);
 	return (exit(EXIT_SUCCESS), 0);
 }

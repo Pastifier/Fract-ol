@@ -6,7 +6,7 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:42:35 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/11 02:11:03 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:21:37 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 /*--- CONST. DEFINES ---*/
 
 # ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 300
+#  define WIN_HEIGHT 700
 # endif // !WIN_HEIGHT
 
 # ifndef WIN_WIDTH
-#  define WIN_WIDTH 300
+#  define WIN_WIDTH 700
 # endif // !WIN_WIDTH
 
 # ifndef MAX_ITER
@@ -43,9 +43,9 @@
 
 enum e_keysyms
 {
-	KEY_ESC = 65307,
+	KEY_A = 97,
 	KEY_D = 100,
-	KEY_A = 97
+	KEY_ESC = 65307
 };
 # endif // !__linux__
 
@@ -77,8 +77,8 @@ typedef struct s_data
  */
 typedef struct s_complex
 {
-	double a;
-	double b;
+	double	a;
+	double	b;
 }	t_complex;
 
 typedef struct s_point
@@ -113,6 +113,11 @@ enum
 	ON_DESTROY = 17
 };
 
+/*--- INIT ---*/
+
+void	init_julia(char **v, t_program *program);
+void	init_mandelbrot(t_program *program);
+
 /*--- COLORING ---*/
 
 // The escape time of the given pixel through `f: C -> C`; 
@@ -121,6 +126,10 @@ enum
 // The sequence `z_{n+1} = f(z_{n})` escapes to infinity
 // when `z_{n+1} >= 4`
 int		escape_time_julia(int max_iterations, t_program *screen, t_complex *c);
+
+// Since the mandelbrot set is just a special case of the julia set,
+// we can just use this function as a wrapper for the julia one.
+int		escape_time_mandel(int max_iterations, t_program *screen, t_complex *d);
 void	pixel_put(t_data *data, t_point coordinates, int color);
 
 /*--- RENDERING ---*/
@@ -130,5 +139,5 @@ int		destroy_program(t_program *fractol);
 
 /*--- HOOKS ---*/
 
-int	handle_key_inputs(int keysym, t_program *fractol);
+int		handle_key_inputs(int keysym, t_program *fractol);
 #endif // !FRACTOL_H
