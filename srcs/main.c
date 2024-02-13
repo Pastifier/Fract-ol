@@ -6,7 +6,7 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:51:09 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/12 16:19:14 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:00:13 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ void	mlx_set_hooks(t_program *fractol)
 	mlx_hook(fractol->win, ON_MOUSEMOVE,
 		1L << ON_MOUSEMOVE, dynamic_julia, fractol);
 	mlx_hook(fractol->win, ON_KEYDOWN, 1L, handle_key_inputs, fractol);
+	mlx_hook(fractol->win, ON_MOUSEDOWN, 1L << 2, handle_mouse_inputs, fractol);
 	mlx_hook(fractol->win, ON_DESTROY, 0, destroy_program, fractol);
+	if (fractol->chosen_set == JULIA)
+		render(fractol);
 	render(fractol);
 	mlx_put_image_to_window(fractol->mlx, fractol->win,
 		fractol->img.img, 0, 0);

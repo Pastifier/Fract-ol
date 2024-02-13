@@ -1,6 +1,6 @@
 # Necessities
 CC := cc
-CFLAGS = -Wextra -Werror -Wall -g3 -O3
+CFLAGS = -Wextra -Werror -Wall -g3
 
 # OS-specification
 OS := $(shell uname)

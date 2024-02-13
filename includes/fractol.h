@@ -6,7 +6,7 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:42:35 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/12 16:21:37 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/13 17:39:43 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,14 @@
 
 enum e_keysyms
 {
+	MSCROLL_UP = 4,
+	MSCROLL_DOWN,
 	KEY_A = 97,
 	KEY_D = 100,
+	AKEY_L = 65361,
+	AKEY_U,
+	AKEY_R,
+	AKEY_D,
 	KEY_ESC = 65307
 };
 # endif // !__linux__
@@ -94,6 +100,7 @@ typedef struct s_program
 	t_point		pixel;
 	uint32_t	algo_toggle;
 	t_complex	mouse_pos;
+	t_point		zoom_focus;
 	double		zoom;
 	t_data		img;
 	t_complex	seed;
@@ -140,4 +147,5 @@ int		destroy_program(t_program *fractol);
 /*--- HOOKS ---*/
 
 int		handle_key_inputs(int keysym, t_program *fractol);
+int		handle_mouse_inputs(int insym, int x, int y, t_program *fractol);
 #endif // !FRACTOL_H
