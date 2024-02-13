@@ -6,7 +6,7 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:08:25 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/13 17:48:53 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:24:47 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	init_julia(char **v, t_program *program)
 		.b = 0.000005};
 	program->lock = true;
 	program->pixel = (t_point){0};
-	program->zoom = 200.0;
+	program->initial_zoom = 200.0;
+	program->zoom = program->initial_zoom;
 	(void)v;
 }
 
@@ -50,5 +51,6 @@ void	init_mandelbrot(t_program *program)
 	program->lock = true;
 	program->pixel = (t_point){0};
 	program->mouse_pos = (t_complex){0};
-	program->zoom = 150.0;
+	program->initial_zoom = 150.0;
+	program->zoom = program->initial_zoom;
 }

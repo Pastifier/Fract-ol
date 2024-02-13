@@ -6,7 +6,7 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 01:46:16 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/13 17:51:49 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:59:15 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int	handle_key_inputs(int keysym, t_program *fractol)
 		fractol->zoom_focus.y -= 25;
 	if (AKEY_U == keysym)
 		fractol->zoom_focus.y += 25;
+	if (KEY_R == keysym)
+	{
+		fractol->zoom_focus = (t_point){0};
+		fractol->zoom = fractol->initial_zoom;
+	}
 	render(fractol);
 	mlx_put_image_to_window(fractol->mlx, fractol->win,
 		fractol->img.img, 0, 0);
@@ -36,14 +41,20 @@ int	handle_key_inputs(int keysym, t_program *fractol)
 
 int	handle_mouse_inputs(int insym, int x, int y, t_program *fractol)
 {
+	double		zoom_factor;
+	t_complex	offset;
+
 	if (MSCROLL_DOWN == insym || MSCROLL_UP == insym)
 	{
-		if (fractol->zoom_focus.x != x || fractol->zoom_focus.y != y)
-			fractol->zoom_focus = (t_point){x, y};
 		if (MSCROLL_UP == insym)
-			fractol->zoom *= 1.1;
-		else if (MSCROLL_DOWN == insym)
-			fractol->zoom *= 0.8;
+			zoom_factor = 1.1;
+		else
+			zoom_factor = 1.0 / 1.1;
+		offset.a = x - fractol->zoom_focus.x;
+		offset.b = y - fractol->zoom_focus.y;
+		fractol->zoom *= zoom_factor;
+		fractol->zoom_focus.x = x - offset.a * zoom_factor;
+		fractol->zoom_focus.y = y - offset.b * zoom_factor; 
 	}
 	render(fractol);
 	mlx_put_image_to_window(fractol->mlx, fractol->win,

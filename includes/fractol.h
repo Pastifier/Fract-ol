@@ -6,7 +6,7 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:42:35 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/13 17:39:43 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:23:25 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ enum e_keysyms
 	MSCROLL_DOWN,
 	KEY_A = 97,
 	KEY_D = 100,
+	KEY_R = 114,
 	AKEY_L = 65361,
 	AKEY_U,
 	AKEY_R,
@@ -101,6 +102,7 @@ typedef struct s_program
 	uint32_t	algo_toggle;
 	t_complex	mouse_pos;
 	t_point		zoom_focus;
+	double		initial_zoom;
 	double		zoom;
 	t_data		img;
 	t_complex	seed;
