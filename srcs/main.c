@@ -6,11 +6,12 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:51:09 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/12 16:19:14 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:26:04 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include <time.h>
 
 static int	parse_input(int c, char **v);
 static void	mlx_set_hooks(t_program *program);

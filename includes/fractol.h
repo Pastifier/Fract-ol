@@ -6,7 +6,7 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:42:35 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/12 16:21:37 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:19:52 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,20 @@
 # include "libft.h"
 # include "mlx.h"
 # include <math.h>
+# include <pthread.h>
 
 /*--- CONST. DEFINES ---*/
 
 # ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 700
+#  define WIN_HEIGHT 800
 # endif // !WIN_HEIGHT
 
+# ifndef THREAD_NUM
+#  define THREAD_NUM 32
+# endif // !THREAD_NUM
+
 # ifndef WIN_WIDTH
-#  define WIN_WIDTH 700
+#  define WIN_WIDTH 800
 # endif // !WIN_WIDTH
 
 # ifndef MAX_ITER
@@ -126,6 +131,7 @@ void	init_mandelbrot(t_program *program);
 // The sequence `z_{n+1} = f(z_{n})` escapes to infinity
 // when `z_{n+1} >= 4`
 int		escape_time_julia(int max_iterations, t_program *screen, t_complex *c);
+int		pthread_escape_time_julia(int max_iterations, t_program *screen, t_complex *c, t_point pixel);
 
 // Since the mandelbrot set is just a special case of the julia set,
 // we can just use this function as a wrapper for the julia one.
