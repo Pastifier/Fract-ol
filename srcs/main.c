@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: ebinjama <ebinjama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:51:09 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/14 14:56:56 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:05:09 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int c, char *v[])
 	static t_program	screen;
 
 	screen.chosen_set = parse_input(c, v);
-	screen.algo_toggle = 0xFFDD00EE;
+	screen.algo_toggle = 0x00DD00EE;
 	if (JULIA == screen.chosen_set)
 		init_julia(v, &screen);
 	else if (MANDELBROT == screen.chosen_set)
@@ -62,6 +62,7 @@ int	dynamic_julia(int x, int y, t_program *fractol)
 	{
 		fractol->mouse_pos.a = (x / (double)WIN_WIDTH) * 3.0 - 2.0;
 		fractol->mouse_pos.b = (y / (double)WIN_HEIGHT) * 2.0 - 1.0;
+		mlx_clear_window(fractol->mlx, fractol->win);
 		render(fractol);
 		mlx_put_image_to_window(fractol->mlx, fractol->win,
 			fractol->img.img, 0, 0);

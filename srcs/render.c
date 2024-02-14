@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: ebinjama <ebinjama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:30:52 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/14 15:00:46 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:10:25 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	render(t_program *fractol)
 	else
 		chosen_set = escape_time_burning;
 	i = -1;
-	while (++i <  WIN_HEIGHT * WIN_WIDTH)
+	while (++i < WIN_HEIGHT * WIN_WIDTH)
 	{
 		fractol->pixel = (t_point){i % WIN_WIDTH, i / WIN_HEIGHT};
 		escape_time = (*chosen_set)(MAX_ITER, fractol, &fractol->mouse_pos);
@@ -34,6 +34,6 @@ void	render(t_program *fractol)
 			color = 0;
 		else
 			color = escape_time * fractol->algo_toggle;
-		pixel_put(&fractol->img, fractol->pixel, color % 0xFFFFFFFF);
+		pixel_put(&fractol->img, fractol->pixel, color);
 	}
 }

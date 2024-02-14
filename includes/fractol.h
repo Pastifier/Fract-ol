@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: ebinjama <ebinjama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:42:35 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/14 15:02:58 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/14 18:46:21 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,16 @@ enum e_keysyms
 
 enum e_keysyms
 {
-	KEY_ESC = 53
+	MSCROLL_UP = 4,
+	MSCROLL_DOWN,
+	KEY_ESC = 53,
+	KEY_A = 0,
+	KEY_D = 2,
+	KEY_R = 15,
+	AKEY_L = 123,
+	AKEY_R,
+	AKEY_D,
+	AKEY_U
 };
 # endif // !__MACH__
 

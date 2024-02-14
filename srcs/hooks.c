@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: ebinjama <ebinjama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 01:46:16 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/14 14:57:49 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/14 18:49:55 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	handle_key_inputs(int keysym, t_program *fractol)
 		fractol->zoom_focus = (t_point){0};
 		fractol->zoom = fractol->initial_zoom;
 	}
+	mlx_clear_window(fractol->mlx, fractol->win);
 	render(fractol);
 	mlx_put_image_to_window(fractol->mlx, fractol->win,
 		fractol->img.img, 0, 0);
@@ -56,6 +57,7 @@ int	handle_mouse_inputs(int insym, int x, int y, t_program *fractol)
 		fractol->zoom_focus.x = x - offset.a * zoom_factor;
 		fractol->zoom_focus.y = y - offset.b * zoom_factor;
 	}
+	mlx_clear_window(fractol->mlx, fractol->win);
 	render(fractol);
 	mlx_put_image_to_window(fractol->mlx, fractol->win,
 		fractol->img.img, 0, 0);
