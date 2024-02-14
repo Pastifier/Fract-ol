@@ -6,28 +6,46 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:00:33 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/12 16:16:33 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:01:13 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double	atof(const char *rep)
+double	ft_atof(const char *rep)
 {
-	double	result;
+	double	mantissa;
+	size_t	dividend;
+	short	sign;
+	bool	found_point;
 
-	(void)rep;
-	result = 0;
-	return (result);
-}
-
-t_point	set_point(double x, double y)
-{
-	t_point	self;
-
-	self.x = x;
-	self.y = y;
-	return (self);
+	mantissa = 0;
+	dividend = 1;
+	found_point = false;
+	sign = 1;
+	if (*rep == '+' || *rep == '-')
+	{
+		if (*rep == '-')
+			sign *= -1;
+		++rep;
+	}
+	while (*rep && ft_isdigit(*rep))
+	{
+		if (*(rep + 1) == '.' && !found_point)
+		{
+			found_point = true;
+			mantissa = ((10 * mantissa) + (*rep - '0'));
+			rep += 2;
+		}
+		else
+		{
+			if (found_point)
+				dividend *= 10;
+			mantissa = ((10 * mantissa) + (*rep - '0'));
+			++rep;
+		}
+	}
+	return (sign * mantissa / dividend);
 }
 
 int	destroy_program(t_program *fractol)

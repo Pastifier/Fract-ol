@@ -6,14 +6,17 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:51:09 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/13 18:00:13 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:56:56 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include <stdio.h>
 
 static int	parse_input(int c, char **v);
 static void	mlx_set_hooks(t_program *program);
+
+// I like the values -1.999 and -0.0005
 
 int	main(int c, char *v[])
 {
@@ -24,6 +27,8 @@ int	main(int c, char *v[])
 	if (JULIA == screen.chosen_set)
 		init_julia(v, &screen);
 	else if (MANDELBROT == screen.chosen_set)
+		init_mandelbrot(&screen);
+	else if (OTHER == screen.chosen_set)
 		init_mandelbrot(&screen);
 	else
 		return (ft_putendl_fd(RED"usage:-\n"\
@@ -44,6 +49,9 @@ int	parse_input(int c, char **v)
 	else if ((!ft_strncmp("MANDELBROT", v[1], 11) && c == 2)
 		|| (!ft_strncmp("mandelbrot", v[1], 11) && c == 2))
 		return (MANDELBROT);
+	else if ((!ft_strncmp("OTHER", v[1], 11) && c == 2)
+		|| (!ft_strncmp("other", v[1], 11) && c == 2))
+		return (OTHER);
 	return (NONE);
 }
 

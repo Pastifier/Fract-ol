@@ -6,7 +6,7 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:30:52 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/13 18:27:16 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:00:46 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	render(t_program *fractol)
 	else if (MANDELBROT == fractol->chosen_set)
 		chosen_set = escape_time_mandel;
 	else
-		chosen_set = escape_time_julia;
+		chosen_set = escape_time_burning;
 	i = -1;
 	while (++i <  WIN_HEIGHT * WIN_WIDTH)
 	{

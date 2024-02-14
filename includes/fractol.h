@@ -6,7 +6,7 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:42:35 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/13 18:23:25 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:02:58 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define NONE 0
 # define JULIA 1
 # define MANDELBROT 2
+# define OTHER 3
 
 # ifdef __linux__
 
@@ -139,6 +140,8 @@ int		escape_time_julia(int max_iterations, t_program *screen, t_complex *c);
 // Since the mandelbrot set is just a special case of the julia set,
 // we can just use this function as a wrapper for the julia one.
 int		escape_time_mandel(int max_iterations, t_program *screen, t_complex *d);
+int		escape_time_burning(int max_iterations, t_program *screen,
+			t_complex *disregard);
 void	pixel_put(t_data *data, t_point coordinates, int color);
 
 /*--- RENDERING ---*/
@@ -150,4 +153,8 @@ int		destroy_program(t_program *fractol);
 
 int		handle_key_inputs(int keysym, t_program *fractol);
 int		handle_mouse_inputs(int insym, int x, int y, t_program *fractol);
+
+/*--- UTILS ---*/
+
+double	ft_atof(const char *rep);
 #endif // !FRACTOL_H

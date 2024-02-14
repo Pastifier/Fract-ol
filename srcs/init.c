@@ -6,7 +6,7 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:08:25 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/13 18:24:47 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:47:35 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	init_julia(char **v, t_program *program)
 	program->img.addr = mlx_get_data_addr(program->img.img,
 			&program->img.bits_per_pixel, &program->img.line_length,
 			&program->img.endian);
-	program->mouse_pos = (t_complex){.a = 0.3147,
-		.b = 0.000005};
+	program->mouse_pos = (t_complex){.a = ft_atof(v[2]),
+		.b = ft_atof(v[3])};
 	program->lock = true;
 	program->pixel = (t_point){0};
 	program->initial_zoom = 200.0;
 	program->zoom = program->initial_zoom;
-	(void)v;
+	render(program);
 }
 
 void	init_mandelbrot(t_program *program)
