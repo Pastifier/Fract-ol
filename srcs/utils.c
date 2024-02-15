@@ -6,28 +6,28 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:00:33 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/15 22:16:30 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/16 01:36:22 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
 
-static void	init_atof(char **rep, double *sign);
+static void	init_atof(char **rep, double *sign, t_program *f);
 static void	validate_rep(char *rep, t_program *fractol);
+static void	validate_double(double num, t_program *f);
 
 double	ft_atof(char *rep, t_program *fractol)
 {
 	double	mantissa;
-	size_t	dividend;
-	double	sign;
+	double	dividend;
 	bool	found_point;
 
 	validate_rep(rep, fractol);
-	mantissa = 0;
-	dividend = 1;
+	mantissa = 0.0;
+	dividend = 1.0;
 	found_point = false;
-	init_atof(&rep, &sign);
+	init_atof(&rep, &dividend, fractol);
 	while (*rep)
 	{
 		if (ft_isdigit(*rep))
@@ -42,11 +42,13 @@ double	ft_atof(char *rep, t_program *fractol)
 			break ;
 		++rep;
 	}
-	return (sign * mantissa / dividend);
+	validate_double(mantissa / dividend, fractol);
+	return (mantissa / dividend);
 }
 
 int	destroy_program(t_program *fractol)
 {
+	mlx_clear_window(fractol->mlx, fractol->win);
 	mlx_destroy_image(fractol->mlx, fractol->img.img);
 	mlx_destroy_window(fractol->mlx, fractol->win);
 	free(fractol->mlx);
@@ -58,21 +60,31 @@ int	destroy_program(t_program *fractol)
 	return (exit(EXIT_SUCCESS), 0);
 }
 
-static void	init_atof(char **rep, double *sign)
+static void	init_atof(char **rep, double *sign, t_program *f)
 {
 	while (**rep && (**rep == ' ' || **rep == '\t'))
-		*rep += 1;
-	*sign = 1;
-	if (**rep == '-')
-	{
-		*sign = -1;
 		(*rep)++;
-	}
-	else if (**rep == '+')
+	*sign = 1.0;
+	if (**rep == '-' || **rep == '+')
 	{
+		if (**rep == '-')
+			*sign = -1.0;
 		(*rep)++;
+		if (!ft_isdigit(**rep))
+			return (f->error = 2, (void)destroy_program(f));
 	}
-	*rep += 1;
+	else if (ft_isdigit(**rep))
+	{
+		if (*(*rep + 1) == '.')
+		{
+			if (!ft_isdigit(*(*rep + 2)))
+				return (f->error = 2, (void)destroy_program(f));
+		}
+		else if (!ft_isdigit(*(*rep + 1)))
+			return (f->error = 2, (void)destroy_program(f));
+	}
+	else
+		return (f->error = 2, (void)destroy_program(f));
 }
 
 static void	validate_rep(char *rep, t_program *fractol)
@@ -99,4 +111,10 @@ static void	validate_rep(char *rep, t_program *fractol)
 	if (!utils.digit_count || utils.sign_count > 1 || utils.found_alpha
 		|| utils.dot_count > 1)
 		return (fractol->error = 2, (void)destroy_program(fractol));
+}
+
+static void	validate_double(double num, t_program *f)
+{
+	if (isnan(num) || isinf(num))
+		return (f->error = 2, (void)destroy_program(f));
 }
