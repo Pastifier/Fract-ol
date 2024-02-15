@@ -6,7 +6,7 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:42:35 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/15 19:51:28 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/15 21:49:00 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,14 @@ int		handle_mouse_inputs(int insym, int x, int y, t_program *fractol);
 
 /*--- UTILS ---*/
 
-double	ft_atof(const char *rep);
+typedef struct s_validate_atof
+{
+	size_t	sign_count;
+	size_t	dot_count;
+	size_t	digit_count;
+	bool	found_alpha;
+}	t_vatof;
+
+double	ft_atof(char *rep, t_program *program);
 
 #endif // !FRACTOL_H
