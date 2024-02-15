@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebinjama <ebinjama@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:51:09 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/14 19:19:26 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:54:14 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ int	main(int c, char *v[])
 		init_mandelbrot(&screen);
 	else
 		return (ft_putendl_fd(RED"usage:-\n"\
-				"JULIA: fractol <{julia/JULIA}> <x> <y>\n"\
-				"MANDELBROT: fractol {mandelbrot/MANDELBROT}"DFLT,
+				"JULIA: ./fractol <{julia/JULIA}> <x> <y>\n"\
+				"MANDELBROT: ./fractol {mandelbrot/MANDELBROT}\n"\
+				"BURNING-SHIP: fractol <{other/OTHER}>"DFLT,
 				STDERR_FILENO), 2);
 	mlx_set_hooks(&screen);
 	return (0);

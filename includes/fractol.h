@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebinjama <ebinjama@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:42:35 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/14 18:46:21 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:51:28 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,4 +166,5 @@ int		handle_mouse_inputs(int insym, int x, int y, t_program *fractol);
 /*--- UTILS ---*/
 
 double	ft_atof(const char *rep);
+
 #endif // !FRACTOL_H
