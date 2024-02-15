@@ -6,7 +6,7 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:00:33 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/15 22:14:54 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/15 22:16:30 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ double	ft_atof(char *rep, t_program *fractol)
 			break ;
 		++rep;
 	}
-	printf("(%f)\n", sign * mantissa / dividend);
 	return (sign * mantissa / dividend);
 }
 
