@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coloring.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: ebinjama <ebinjama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:03:08 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/14 14:57:28 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:23:04 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	escape_time_julia(int max_iterations, t_program *screen, t_complex *c)
 	while (++i < max_iterations)
 	{
 		fz.a = (z.a * z.a) - (z.b * z.b) + (c->a);
-		fz.b = 2.0 * z.a * z.b + c->b;
+		fz.b = 2.0 * z.a * z.b - c->b;
 		if ((fz.a * fz.a) + (fz.b * fz.b) >= 4.0)
 			break ;
 		z = fz;
