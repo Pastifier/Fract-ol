@@ -6,7 +6,7 @@
 /*   By: ebinjama <ebinjama@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:00:33 by ebinjama          #+#    #+#             */
-/*   Updated: 2024/02/16 01:36:22 by ebinjama         ###   ########.fr       */
+/*   Updated: 2024/02/16 21:44:16 by ebinjama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	init_atof(char **rep, double *sign, t_program *f)
 			if (!ft_isdigit(*(*rep + 2)))
 				return (f->error = 2, (void)destroy_program(f));
 		}
-		else if (!ft_isdigit(*(*rep + 1)))
+		else if (!ft_isdigit(*(*rep + 1)) && (*(*rep + 1)))
 			return (f->error = 2, (void)destroy_program(f));
 	}
 	else
