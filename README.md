@@ -4,7 +4,7 @@
 
 </div>
 
-<kbd>
+<kbd style="font-size: 18px">
   <h1 align="center">Prerequisites:</h2>
   <p align="center">You will need X11 and its dependencies for Linux and Mac.</p>
   <p align="center">If you want to run it on Windows, you will have to use WSL2.</p>
