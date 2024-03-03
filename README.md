@@ -15,7 +15,9 @@ git submodule update
 make
 ```
 
-## Usage:
+## ----------
+## | Usage: |
+## ----------
 
 Julia is different from the other sets provided. You will have to add a seed (any value between -2 and 2 for both the real and imaginary components:
 ```
