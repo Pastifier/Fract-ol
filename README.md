@@ -15,7 +15,10 @@ git submodule update
 make
 ```
 
-## | Usage: |
+<kbd>
+  <h3>Usage:</h3>
+  <p>This is some content inside a box.</p>
+</kbd>
 
 Julia is different from the other sets provided. You will have to add a seed (any value between -2 and 2 for both the real and imaginary components:
 ```
