@@ -15,19 +15,17 @@ git submodule update
 make
 ```
 
+## Usage:
 <kbd>
-  <h3>Usage:</h3>
-  <p>This is some content inside a box.</p>
-</kbd>
-
-Julia is different from the other sets provided. You will have to add a seed (any value between -2 and 2 for both the real and imaginary components:
+  <h3>Julia is different from the other sets provided. You will have to add a seed (any value between -2 and 2 for both the real and imaginary components:</h3>
+  
 ```
 ./fractol julia a b
 ```
  
-When it starts, you can lock and unlock it using the `A` key. The shape will change depending on your mouse position in the window!
+<p>When it starts, you can lock and unlock it using the `A` key. The shape will change depending on your mouse position in the window!</p>
 
-The others are simpler to run:
+<p>The others are simpler to run:</p>
 ```
 ./fractol mandelbrot
 ./fractol other
@@ -37,3 +35,6 @@ The others are simpler to run:
 - ARROW KEYS \- movement/navigation.
 - MOUSEWHEEL \- zoom (currently a bit bugged, placing your cursor at the top-left corner of the window will help. It zooms in the middle! xD).
 - R \- resets the fractal (zoom and everything. Including Julia).
+</kbd>
+
+
