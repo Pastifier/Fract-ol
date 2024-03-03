@@ -31,6 +31,6 @@ The others are simpler to run:
 ```
 
 ## Controls:
-ARROW KEYS - movement/navigation
-MOUSEWHEEL - zoom (currently a bit bugged, placing your cursor at the top-left corner of the window will help. It zooms in the middle! xD)
-R - resets the fractal (zoom and everything. Including Julia).
+- ARROW KEYS \- movement/navigation.
+- MOUSEWHEEL \- zoom (currently a bit bugged, placing your cursor at the top-left corner of the window will help. It zooms in the middle! xD).
+- R \- resets the fractal (zoom and everything. Including Julia).
