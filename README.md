@@ -10,11 +10,11 @@
   <p align="center">If you want to run it on Windows, you will have to use WSL2.</p>
 
   <pre align="center">
-    <code align="center">
+    <code align="center" style="font-size: 18px">
 sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
     </code>
   </pre>
-  <p align="center">(replace `apt-get` with your package manager if you don't have it)</p>
+  <p align="center" style="font-size: 16px">(replace `apt-get` with your package manager if you don't have it)</p>
 
   <h1 align="center">Getting Started:</h2>
   <pre align="center">
